@@ -5,7 +5,8 @@
   "private": true,
   "scripts": {
     "build": "npx webpack",
-    "serve": "http-server -o /dist",
+    "start:dev":"webpack-dev-server",
+    "start-dev": "http-server -o /dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -15,6 +16,7 @@
     "html-loader": "^1.3.2",
     "html-webpack-plugin": "^4.5.0",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.11.1"
   }
 }
