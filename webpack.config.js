@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractkPlugin = require("mini-css-extract-plugin");
 
-// console.log(__dirname);
+// console.log(process.env.NODE_ENV);//__dirname);
 // entry: "./src/index.js",
 // output: {
 //     path : __dirname+'\\dist',
@@ -8,14 +9,17 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 // },
     
 module.exports = {
-	mode: "development",
+    mode: "development",
+    entry: {
+        index: "./src/index.js"
+    },
     output: {
         filename : "[name].bundle.js"
     },
     module: {
         rules: [
             {
-                test: /\.html$/,
+                test: /\.html$/i,
                 use: [
                     {
                         loader: "html-loader",
@@ -25,7 +29,7 @@ module.exports = {
 
             },
             {
-                test: /\.(png|svg|jpg|jpeg|gif)$/,
+                test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 use: [
                     {
                         loader: "file-loader",
@@ -33,13 +37,30 @@ module.exports = {
                     }
                 ]
 
+            },
+            {
+                test: /\.s[ac]ss$/i,
+                use: [
+                    // fallback to style-loader in development
+                    // "style-loader",
+                    MiniCssExtractkPlugin.loader,
+                    // Translates CSS into CommonJS
+                    "css-loader",
+                    // Compiles Sass to CSS
+                    "sass-loader"
+                ]
             }
         ]
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            filename: "./index.html"
+            filename: "./index.html",
+            chunks: ["index"]
+        }),
+        new MiniCssExtractkPlugin({
+            filename: "[name].css",
+            chunkFilename: "[id].css"
         })
     ]
 }

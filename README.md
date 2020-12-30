@@ -16,6 +16,10 @@ Project can be used as basic setup of webpack
 # other files like images packer
 > npm i -D file-loader
 
+# sass loader and style loader
+> npm i -D node-sass style-loader css-loader sass-loader mini-css-extract-plugin
 
+(update)
+> npm install sass-loader sass webpack --save-dev
 
 ```
